@@ -1,0 +1,54 @@
+{
+  "name": "thunderbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --fix --cache --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --debounce=100 --exit-child --files src/index.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinDavai/ThunderBot.git"
+  },
+  "keywords": [],
+  "author": "KevinDavai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinDavai/ThunderBot/issues"
+  },
+  "homepage": "https://github.com/KevinDavai/ThunderBot#readme",
+  "devDependencies": {
+    "@types/express": "4.17.15",
+    "@types/luxon": "3.2.0",
+    "@types/node": "^18.11.18",
+    "@types/node-schedule": "2.1.0",
+    "@types/remove-markdown": "0.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-standard": "^5.0.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3"
+  }
+}

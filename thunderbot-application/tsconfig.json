@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src/",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "target": "es6",
+    "lib": ["esnext", "DOM"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "module": "CommonJS"
+  },
+  "include": ["**/*.d.ts", "src/**/*", "seed.ts"]
+}
