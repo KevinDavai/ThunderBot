@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/express": "4.17.15",
     "@types/luxon": "3.2.0",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^18.11.18",
     "@types/node-schedule": "2.1.0",
     "@types/remove-markdown": "0.3.1",
@@ -49,6 +50,7 @@
   },
   "dependencies": {
     "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.8.3"
   }
 }

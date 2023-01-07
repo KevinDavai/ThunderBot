@@ -1,3 +1,4 @@
+import { connectDatabase } from './utils/mongoUtils';
 import { GatewayIntentBits } from 'discord.js';
 import { config } from 'dotenv';
 
@@ -18,6 +19,8 @@ const client = new Client({
 });
 
 loadHandlers(client);
+
+connectDatabase();
 
 client.login(process.env.DISCORD_CLIENT_SECRET).catch(err => {
   console.error('[Login Error]', err);
