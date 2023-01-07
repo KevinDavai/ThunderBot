@@ -5,7 +5,7 @@ import Client from './extends/extendsClient';
 import { loadHandlers } from './utils/handlersUtil';
 
 // Loads .env file contents into process.env.
-config();
+config({ path: '../.env' });
 
 const client = new Client({
   intents: [
@@ -19,7 +19,7 @@ const client = new Client({
 
 loadHandlers(client);
 
-client.login(process.env.CLIENT_TOKEN).catch(err => {
+client.login(process.env.DISCORD_CLIENT_SECRET).catch(err => {
   console.error('[Login Error]', err);
   process.exit(1);
 });

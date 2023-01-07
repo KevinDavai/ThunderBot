@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+  api:
+    build:
+      context: ./thunderbot-api
+      dockerfile: Dockerfile
+      target: ${NODE_ENV}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - ./thunderbot-api/src:/api/src
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+  bot:
+    build:
+      context: ./thunderbot-application
+      dockerfile: Dockerfile
+      target: ${NODE_ENV}
+    volumes:
+      - ./thunderbot-application/src:/bot/src
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+  dashboard:
+    build:
+      context: ./thunderbot-dashboard
+      dockerfile: Dockerfile
+      target: ${NODE_ENV}
+    volumes:
+      - ./thunderbot-dashboard/src:/dashboard/src
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+
+  mongodb:
+    image: mongo:latest
+    env_file:
+      - .env
+    ports:
+      - 27017:27017
+    command: --quiet
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:

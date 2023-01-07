@@ -1,0 +1,22 @@
+{
+  "name": "thunderbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd ./thunderbot-api && npm install && cd ../thunderbot-application && npm install && cd ../thunderbot-dashboard && npm install",
+    "start:dev": "docker-compose up",
+    "stop": "docker-compose down",
+    "docker:build": "docker-compose build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinDavai/ThunderBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinDavai/ThunderBot/issues"
+  },
+  "homepage": "https://github.com/KevinDavai/ThunderBot#readme"
+}
