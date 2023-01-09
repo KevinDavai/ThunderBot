@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
+import * as passport from 'passport';
+import MongoStore from 'connect-mongo/build/main/lib/MongoStore';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.setGlobalPrefix('api');
 
   app.use(
     session({
@@ -13,8 +17,12 @@ async function bootstrap() {
       cookie: {
         maxAge: 60000 * 60 * 24,
       },
+      store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     }),
   );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   try {
     await app.listen(process.env.API_PORT);
