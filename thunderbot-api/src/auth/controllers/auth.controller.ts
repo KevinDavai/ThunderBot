@@ -1,6 +1,9 @@
-import { DiscordAuthGuard } from './../utils/Guards';
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthenticatedGuard, DiscordAuthGuard } from './../utils/Guards';
+import { Response } from 'express';
+import { Controller, Get, Post, UseGuards, Res } from '@nestjs/common';
 import { ROUTES } from 'src/utils/constants';
+import { AuthUser } from 'src/utils/decorators';
+import { User } from 'src/utils/typeorm/schema/user.schema';
 
 @Controller(ROUTES.AUTH)
 export class AuthController {
@@ -10,10 +13,15 @@ export class AuthController {
 
   @Get('redirect')
   @UseGuards(DiscordAuthGuard)
-  redirect() {}
+  redirect(@Res() res: Response) {
+    res.redirect('http://localhost:3000/guilds');
+  }
 
   @Get('status')
-  status() {}
+  @UseGuards(AuthenticatedGuard)
+  status(@AuthUser() user: User) {
+    return user;
+  }
 
   @Post('logout')
   logout() {}
