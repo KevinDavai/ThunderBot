@@ -2,11 +2,13 @@ FROM node:19.3.0 AS base
 
 WORKDIR /dashboard
 COPY package*.json ./
+COPY rtl.config.js ./
+
 
 FROM base AS dev
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . .
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
 
 FROM base as prod
 RUN npm install --production

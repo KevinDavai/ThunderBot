@@ -31,12 +31,14 @@ services:
       target: ${NODE_ENV}
     volumes:
       - ./thunderbot-dashboard/src:/dashboard/src
+      - ./thunderbot-dashboard/public:/dashboard/public
+      - /dashboard/node_modules
     ports:
       - 3000:3000
     depends_on:
       - mongodb
     env_file:
-      - .env
+      - ./thunderbot-dashboard/.env
 
   mongodb:
     image: mongo:latest
