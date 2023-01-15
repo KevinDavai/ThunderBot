@@ -7,11 +7,12 @@ import { LoginPage } from '../pages/home/LoginPage'
 import { GuildContext } from '../utils/contexts/GuildContext';
 import { useFetchUser } from '../utils/hooks/useFetchUser';
 import { setTimeout } from 'timers'
+import { LoadingOverlay } from '../components/LoaderComponents/LoadingOverlay'
 
 
 const AppRoutes: FC = () => {
-  const [guildId, setGuildId] = useState('');
   const { user, loading, error } = useFetchUser();
+  const [guildId, setGuildId] = useState('');
   const updateGuildId = (id: string) => setGuildId(id);
 
   return (
@@ -21,7 +22,7 @@ const AppRoutes: FC = () => {
           <Route element={<App />}>
             { loading ? (
               <>
-                <Route path='*' element={<h1>loading...</h1>}/>
+                <Route path='*' element={<LoadingOverlay/>}/>
               </>
             ) : (
               <>

@@ -1,0 +1,40 @@
+section {
+    background-color: #0D0C17
+}
+
+.box {
+    background: linear-gradient(#1d1e20, #100d1a);
+    width: 220px;
+    height: 200px;
+    border-radius: 25px;
+    position: relative;
+}
+
+.box::after {
+    content: '';
+    border-radius: 25px 25px 0 0;
+    background-color: red;
+    width: 100%;
+    height: 60%;
+    position: absolute;
+}
+
+.box img {
+    position: absolute;
+    z-index: 10;
+    width: 70px;
+    height: 70px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 30px;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.card {
+    border: 0;
+    box-shadow: none;
+    background-color: #1e1e2d;
+}
+

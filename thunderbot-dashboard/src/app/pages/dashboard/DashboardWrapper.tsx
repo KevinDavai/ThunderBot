@@ -7,6 +7,8 @@ import {
   MixedWidget14,
   MixedWidget15,
 } from '../../../_metronic/partials/widgets'
+import { motion as m } from "framer-motion"
+
 
 const DashboardPage = () => (
   <>
@@ -60,13 +62,15 @@ const DashboardPage = () => (
 
 const DashboardWrapper = () => {
   return (
-    <EnableSidebar>
-      <PageTitle description='You’ve got 24 New Sales' breadcrumbs={[]}>
-        Hello, Paul
-      </PageTitle>
-      <DashboardPage />
-    </EnableSidebar>
-  )
+    <m.div initial={{opacity: 0 }} animate={{opacity: 1}}>
+      <EnableSidebar>
+        <PageTitle description='You’ve got 24 New Sales' breadcrumbs={[]}>
+          Hello, Paul
+        </PageTitle>
+        <DashboardPage />
+      </EnableSidebar>
+    </m.div>  
+    )
 }
 
 export {DashboardWrapper}

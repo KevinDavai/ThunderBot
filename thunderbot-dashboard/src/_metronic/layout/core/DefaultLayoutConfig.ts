@@ -39,7 +39,7 @@ export const DefaultLayoutConfig: ILayout = {
     layout: 'default',
   },
   toolbar: {
-    display: true, // Display toolbar
+    display: false, // Display toolbar
     width: 'fluid', // Set fixed|fluid to change width type,
     fixed: {
       desktop: true,
@@ -81,6 +81,6 @@ export const DefaultLayoutConfig: ILayout = {
     responsiveTarget: '#kt_toolbar_container', // Responsive target selector
   },
   sidebar: {
-    display: true, // only for dashboard
+    display: false, // only for dashboard
   },
 }
