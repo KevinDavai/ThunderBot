@@ -22,7 +22,7 @@ loadHandlers(client);
 
 connectDatabase();
 
-client.login(process.env.DISCORD_CLIENT_SECRET).catch(err => {
+client.login(process.env.DISCORD_BOT_TOKEN).catch(err => {
   console.error('[Login Error]', err);
   process.exit(1);
 });
