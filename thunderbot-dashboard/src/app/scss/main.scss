@@ -111,7 +111,29 @@
 }
 
 
+@media only screen and (max-width: 500px) {
+    .guilds-bg {
+    
+        padding-bottom: 0px;
+        color: #151521;
+        background: #151521;
+        background-image: none;
+        
+    
+    }
+}
+
+
 @media only screen and (max-width: 834px) {
+
+    .radial-bg {
+        display: none;
+    }
+
+    .radial-bg-2 {
+       display: none;
+    }
+
     .guild-card .btn {
         padding: 15px 25px 15px 25px !important;
     }
