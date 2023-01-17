@@ -1,0 +1,118 @@
+
+.guild-card p {
+    margin: 0;
+}
+
+.overflow-visible {
+    overflow: visible;
+}
+
+.bg-blend {
+  background-image: 
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/grid.png),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/building.jpg);
+  background-blend-mode: multiply;
+  background-size: 16px 16px, cover;
+}
+
+.clip-path-svg-guild-card {
+    clip-path:url(#SVGID_2_);
+}
+
+.enable-background-guild-card {
+    enable-background:new 0 0 300 160;
+}
+
+.cls-1{
+    fill:none;
+}
+.cls-2{
+    clip-path:url(#clip-path);
+}
+.guild-card {
+    border-radius: 25px;
+    background: linear-gradient(#1e1e2d, #151521);
+    height: 270px;
+    width: 300px;
+}
+
+.guild-card-under {
+    height: 160px;
+}
+.guild-card-svg {
+    position: relative;
+    height: 160px;
+}
+
+.guild-card-svg image {
+    filter: blur(5px);
+    mix-blend-mode: color-burn;
+    opacity: 0.5;
+}
+
+.guild-card-svg img {
+    height: 108px;
+    width: 108px;
+    border-radius: 100%;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.guilds-bg {
+    
+    padding-bottom: 0px;
+    color: #151521;
+    background: #151521;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) -1px, #151521 0.83px);
+    -webkit-background-size: 20px 20px;
+    background-size:  20px 20px;
+
+}
+
+.mask-bg {
+    mask-image: linear-gradient(to bottom, transparent, black);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+}
+
+.radial-bg {
+    position: absolute;
+    -webkit-transform: translate(-0%, -50%);
+    -moz-transform: translate(-0%, -50%);
+    -ms-transform: translate(-0%, -50%);
+    transform: translate(-0%, -50%);
+    top: 0%;
+    left: 20%;
+    width: 300px;
+    height: 1000px;
+    transform: rotate(-45deg);
+    -webkit-filter: blur(70px);
+    filter: blur(100px);
+    background: radial-gradient(circle at 50% 50%, #444bf7, #444bf700);
+    opacity: 0.3;
+}
+
+.radial-bg-2 {
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 80%;
+    width: 300px;
+    height: 300px;
+    -webkit-filter: blur(80px);
+    filter: blur(100px);
+    background: radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 1), #4c00ff00);
+    opacity: .3;
+}
+
+
+@media only screen and (max-width: 834px) {
+    .guild-card .btn {
+        padding: 15px 25px 15px 25px !important;
+    }
+  }
