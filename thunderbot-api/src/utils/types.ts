@@ -8,4 +8,13 @@ export type UserDetails = {
   discriminator: string;
 };
 
+export type PartialGuild = {
+  id: string;
+  name: string;
+  icon: string;
+  owner: boolean;
+  permissions: string;
+  features: string[];
+}
+
 export type Done = (err: Error, user: User) => void;
