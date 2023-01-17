@@ -22,4 +22,16 @@ export class UserService implements IUserService {
     console.log('findUser');
     return this.userModel.findOne({ discordId });
   }
+
+  async updateUser(user: User, details: UserDetails) {
+    console.log('Update User')
+    const discordId = details.discordId
+    const doc = await this.userModel.findOne({ discordId });
+    doc.accessToken = details.accessToken;
+    doc.refreshToken = details.refreshToken;
+    doc.username = details.username;
+    doc.discriminator = details.discriminator;
+
+    return doc.save()
+  }
 }
