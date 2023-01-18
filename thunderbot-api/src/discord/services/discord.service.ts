@@ -17,16 +17,17 @@ export class DiscordService implements IDiscordService {
         return this.discordHttpService.fetchUserGuilds(accessToken);
     }
 
-    async getOwnerUserGuilds(accessToken: string) {
-        const { data: userGuilds } = await this.getUserGuilds(accessToken);
-        const ownerUserGuilds = userGuilds.filter((guild) => guild.owner)
-        return ownerUserGuilds;
-    }
-
     async getMutualGuilds(accessToken: string) {
+        console.log(accessToken)
         const { data: userGuilds } = await this.getUserGuilds(accessToken);
         const { data: botGuilds } = await this.getBotGuilds();
+        const ownerUserGuilds = userGuilds.filter((guild) => guild.owner)
         const mutualGuilds = userGuilds.filter((guild) => botGuilds.some((botGuild) => botGuild.id === guild.id ))
-        return mutualGuilds;
+        
+        ownerUserGuilds.sort(function(a, b){  
+            return mutualGuilds.indexOf(b) - mutualGuilds.indexOf(a) ;
+        });
+
+        return {mutualGuilds, ownerUserGuilds};
     }
 }

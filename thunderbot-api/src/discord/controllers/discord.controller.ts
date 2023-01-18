@@ -11,11 +11,6 @@ export class DiscordController {
         @Inject(SERVICES.DISCORD) private readonly discordService: IDiscordService
     ) { }
 
-    @Get('owner_guilds')
-    getOwnerUserGuilds(@AuthUser() user: User) {
-        return this.discordService.getOwnerUserGuilds(user.accessToken);
-    }
-
     @Get('guilds')
     getMutualGuilds(@AuthUser() user: User) {
         console.log(user)
