@@ -28,9 +28,9 @@ const AppRoutes: FC = () => {
               <>
                 {user && !error ? (
                   <>
-                    <Route path='guilds' element={<GuildsPage />}></Route>
+                    <Route path='dashboard' element={<GuildsPage />}></Route>
                     <Route element={<MasterLayout />}>
-                      <Route path='/dashboard' element={<DashboardWrapper />} />
+                      <Route path='dashboard/:id/home' element={<DashboardWrapper />} />
                     </Route>
                     <Route path='/' element={<LoginPage />} />
                   </>

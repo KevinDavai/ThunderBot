@@ -39,6 +39,7 @@ services:
       - mongodb
     env_file:
       - ./thunderbot-dashboard/.env
+      - .env
 
   mongodb:
     image: mongo:latest
