@@ -9,14 +9,16 @@ import {useFetchUser} from '../utils/hooks/useFetchUser'
 import {setTimeout} from 'timers'
 import {LoadingOverlay} from '../components/LoaderComponents/LoadingOverlay'
 import {GuildsPage} from '../pages/home/GuildsPage'
+import {PartialGuild} from '../utils/types'
+import {DashboardSettings} from '../pages/dashboard/DashboardSettings'
 
 const AppRoutes: FC = () => {
   const {user, loading, error} = useFetchUser()
-  const [guildId, setGuildId] = useState('')
-  const updateGuildId = (id: string) => setGuildId(id)
+  const [guild, setGuild] = useState<PartialGuild>()
+  const updateGuild = (guild: PartialGuild) => setGuild(guild)
 
   return (
-    <GuildContext.Provider value={{guildId, updateGuildId}}>
+    <GuildContext.Provider value={{guild, updateGuild}}>
       <BrowserRouter>
         <Routes>
           <Route element={<App />}>
@@ -30,7 +32,8 @@ const AppRoutes: FC = () => {
                   <>
                     <Route path='dashboard' element={<GuildsPage />}></Route>
                     <Route element={<MasterLayout />}>
-                      <Route path='dashboard/:id/home' element={<DashboardWrapper />} />
+                      <Route path='dashboard/:id' element={<DashboardWrapper />} />
+                      <Route path='dashboard/:id/settings' element={<DashboardSettings />} />
                     </Route>
                     <Route path='/' element={<LoginPage />} />
                   </>

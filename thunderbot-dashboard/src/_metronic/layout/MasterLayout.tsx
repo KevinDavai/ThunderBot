@@ -1,5 +1,5 @@
-import {useEffect} from 'react'
-import {Outlet} from 'react-router-dom'
+import {useEffect, useContext, useState} from 'react'
+import {Outlet, useNavigate} from 'react-router-dom'
 import {AsideDefault} from './components/aside/AsideDefault'
 import {Footer} from './components/Footer'
 import {HeaderWrapper} from './components/header/HeaderWrapper'
@@ -11,8 +11,39 @@ import {useLocation} from 'react-router-dom'
 import {DrawerMessenger, ActivityDrawer, InviteUsers, UpgradePlan} from '../partials'
 import {MenuComponent} from '../assets/ts/components'
 import {Sidebar} from './components/Sidebar'
+import {useFetchGuilds} from '../../app/utils/hooks/useFetchGuilds'
+import {GuildContext} from '../../app/utils/contexts/GuildContext'
 
 const MasterLayout = () => {
+  const {ownerGuilds, mutualGuilds, error} = useFetchGuilds()
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
+  const {guild, updateGuild} = useContext(GuildContext)
+
+  useEffect(() => {
+    const checkGuilds = async () => {
+      if (mutualGuilds) {
+        const guildId = window.location.href.match(/\/dashboard\/([^\/]+)(?=\/|$)/)?.[1]
+        console.log(guildId?.toString())
+        mutualGuilds?.forEach((g) => {
+          if (g.id == guildId?.toString()) {
+            updateGuild(g)
+          }
+        })
+        setLoading(false)
+      }
+    }
+
+    checkGuilds()
+  }, [mutualGuilds])
+
+  useEffect(() => {
+    if (loading === false) {
+      console.log('useeffect')
+      if (!guild) navigate('/dashboard')
+    }
+  }, [loading])
+
   const location = useLocation()
   useEffect(() => {
     setTimeout(() => {

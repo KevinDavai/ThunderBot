@@ -5,15 +5,14 @@ import {useNavigate} from 'react-router-dom'
 import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
 import {GuildMenuItem} from '../../components/GuildMenuItem/GuildMenuItem'
 import {GuildMenuItemSkeleton} from '../../components/GuildMenuItem/GuildMenuItemSkeleton'
+import {PartialGuild} from '../../utils/types'
 
 export const GuildsPage = () => {
   const navigate = useNavigate()
-  const {updateGuildId} = useContext(GuildContext)
   const {ownerGuilds, mutualGuilds, loading, error} = useFetchGuilds()
 
-  const handleClick = (guildId: string) => {
-    updateGuildId(guildId)
-    navigate(`${guildId}/home`)
+  const handleClick = (guild: PartialGuild) => {
+    navigate(`${guild.id}`)
   }
   return (
     <>
@@ -40,11 +39,11 @@ export const GuildsPage = () => {
                   {ownerGuilds?.map((guild) => (
                     <div key={guild.id}>
                       {mutualGuilds?.some((mutualGuild) => mutualGuild.id === guild.id) ? (
-                        <div onClick={() => handleClick(guild.id)}>
+                        <div onClick={() => handleClick(guild)}>
                           <GuildMenuItem ownerGuild={guild} isMutual={true} />
                         </div>
                       ) : (
-                        <div onClick={() => handleClick(guild.id)}>
+                        <div onClick={() => handleClick(guild)}>
                           <GuildMenuItem ownerGuild={guild} isMutual={false} />
                         </div>
                       )}

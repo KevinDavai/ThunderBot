@@ -16,7 +16,7 @@ import {useNavigate} from 'react-router-dom'
 import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
 import {PartialGuild} from '../../utils/types'
 
-const DashboardPage = () => (
+const DashboardSettingsPage = () => (
   <>
     <div className='row gy-5 g-xl-10'>
       {/*begin::Col*/}
@@ -66,16 +66,16 @@ const DashboardPage = () => (
   </>
 )
 
-const DashboardWrapper = () => {
-  const {guild} = useContext(GuildContext)
+const DashboardSettings = () => {
+  const {guild, updateGuild} = useContext(GuildContext)
 
   return guild ? (
     <m.div initial={{opacity: 0}} animate={{opacity: 1}}>
       <EnableSidebar>
         <PageTitle description='You’ve got 24 New Sales' breadcrumbs={[]}>
-          Hello, Paul
+          Hello, Paul SETTINBG
         </PageTitle>
-        <DashboardPage />
+        <DashboardSettingsPage />
       </EnableSidebar>
     </m.div>
   ) : (
@@ -83,4 +83,4 @@ const DashboardWrapper = () => {
   )
 }
 
-export {DashboardWrapper}
+export {DashboardSettings}
