@@ -32,8 +32,16 @@
 .guild-card {
     border-radius: 25px;
     background: linear-gradient(#1e1e2d, #151521);
-    height: 270px;
     width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-guild-card {
+    justify-content: center;
+    align-items: center;
+    margin-top: 19px;
+    margin-bottom: 20px;
 }
 
 .guild-card-under {
@@ -139,6 +147,72 @@
     opacity: .3;
 }
 
+.loading-img {
+    height: 108px;
+    width: 108px;
+    border-radius: 100%;
+    border: 3px solid #1e1e2d;
+    background-color: #151521;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-size: 300px;
+  -webkit-animation: shine-loading-image 1.5s infinite ease-in;
+          animation: shine-loading-image 1.5s infinite ease-in;
+}
+
+.loading-btn {
+    border-radius: 100%;
+    background-color: #151521;
+
+  background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-size: 300px;
+  -webkit-animation: shine-loading-image 1.5s infinite ease-in;
+          animation: shine-loading-image 1.5s infinite ease-in;
+}
+
+.loading-text {
+    border-radius: 25px;
+    background-color: #151521;
+    width: 135px;
+    height: 15px;
+
+  background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-size: 300px;
+  -webkit-animation: shine-loading-text 1.5s infinite ease-in;
+          animation: shine-loading-text 1.5s infinite ease-in;
+}
+
+.loading-subtext {
+    border-radius: 25px;
+    background-color: #151521;
+    width: 100px;
+    height: 15px;
+
+  background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-size: 300px;
+  -webkit-animation: shine-loading-text 1.5s infinite ease-in;
+          animation: shine-loading-text 1.5s infinite ease-in;
+}
+
+.btn-loading-skeleton {
+    border-radius: 10px;
+    border-color: #1e1e2e;
+    background-color: #151521;
+    
+}
+
 
 @media only screen and (max-width: 500px) {
     .guilds-bg {
@@ -165,5 +239,43 @@
 
     .guild-card .btn {
         padding: 15px 25px 15px 25px !important;
+    }
+  }
+
+  @-webkit-keyframes shine-loading-image {
+    0% {
+      background-position: -95px;
+    }
+    40%, 100% {
+      background-position: 95px;
+    }
+  }
+  
+  
+  @keyframes shine-loading-image {
+    0% {
+      background-position: -95px;
+    }
+    40%, 100% {
+      background-position: 95px;
+    }
+  }
+
+  @-webkit-keyframes shine-loading-text {
+    0% {
+      background-position: -95px;
+    }
+    40%, 100% {
+      background-position: 125px;
+    }
+  }
+  
+  
+  @keyframes shine-loading-text {
+    0% {
+      background-position: -95px;
+    }
+    40%, 100% {
+      background-position: 125px;
     }
   }

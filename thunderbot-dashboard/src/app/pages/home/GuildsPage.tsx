@@ -4,6 +4,7 @@ import {useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
 import {GuildMenuItem} from '../../components/GuildMenuItem/GuildMenuItem'
+import {GuildMenuItemSkeleton} from '../../components/GuildMenuItem/GuildMenuItemSkeleton'
 
 export const GuildsPage = () => {
   const navigate = useNavigate()
@@ -19,34 +20,40 @@ export const GuildsPage = () => {
       <div className='absolute mask-bg'></div>
       <div className='guilds-bg'>
         <div className='container mt-20 d-flex flex-column bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0'>
-          <m.div
-            className='d-flex justify-content-center flex-wrap mx-auto mt-15 p-10 gap-10'
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-          >
+          <div className='d-flex justify-content-center flex-wrap mx-auto mt-15 p-10 gap-10'>
             <div className='d-flex'>
               <h1 className='text-uppercase fs-1 mb-10'>Sélectionner un serveur</h1>
             </div>
 
-            <div className='d-flex justify-content-center flex-wrap mx-auto mt-5 p-10 gap-4 relative'>
+            <div className='d-flex justify-content-center flex-wrap mx-auto mt-5 p-10 gap-4 relative w-100'>
               <div border-radius='50% 200% 40% 80%' className='radial-bg'></div>
               <div border-radius='50% 200% 40% 80%' className='radial-bg-2'></div>
 
-              {ownerGuilds?.map((guild) => (
-                <div key={guild.id}>
-                  {mutualGuilds?.some((mutualGuild) => mutualGuild.id === guild.id) ? (
-                    <div onClick={() => handleClick(guild.id)}>
-                      <GuildMenuItem ownerGuild={guild} isMutual={true} />
+              {loading ? (
+                <>
+                  <GuildMenuItemSkeleton />
+                  <GuildMenuItemSkeleton />
+                  <GuildMenuItemSkeleton />
+                </>
+              ) : (
+                <>
+                  {ownerGuilds?.map((guild) => (
+                    <div key={guild.id}>
+                      {mutualGuilds?.some((mutualGuild) => mutualGuild.id === guild.id) ? (
+                        <div onClick={() => handleClick(guild.id)}>
+                          <GuildMenuItem ownerGuild={guild} isMutual={true} />
+                        </div>
+                      ) : (
+                        <div onClick={() => handleClick(guild.id)}>
+                          <GuildMenuItem ownerGuild={guild} isMutual={false} />
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div onClick={() => handleClick(guild.id)}>
-                      <GuildMenuItem ownerGuild={guild} isMutual={false} />
-                    </div>
-                  )}
-                </div>
-              ))}
+                  ))}
+                </>
+              )}
             </div>
-          </m.div>
+          </div>
         </div>
       </div>
     </>
