@@ -20,6 +20,114 @@ export function AsideMenuMain() {
         title={'SETTINGS'}
         fontIcon='bi-app-indicator'
       />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
+      <AsideMenuItem
+        to={'/dashboard/' + guild.id + '/welcome'}
+        icon='/media/icons/duotune/arrows/arr001.svg'
+        title={'WELCOMES & LEAVES'}
+        fontIcon='bi-app-indicator'
+      />
     </>
   ) : (
     <></>
