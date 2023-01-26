@@ -1,15 +1,38 @@
 $main-blue: #444bf7;
 
 .main-blue {
-  color: $main-blue
+  color: $main-blue;
+  border-color: $main-blue;
 }
+
+.main-blue-hover:hover {
+  color: $main-blue !important;
+}
+
+.main-blue-hover:hover .icon-null-guild-nav {
+  border: 1px solid $main-blue !important;
+}
+
+.main-blue-hover:hover .icon-null-guild-nav i {
+  color: $main-blue !important;
+}
+
+
 
 .main-blue-bg {
   background-color: $main-blue;
 }
 
+
+.main-black-bg {
+  background-color: var(--kt-page-bg);
+}
+
 .guild-card p {
     margin: 0;
+}
+ul {
+  list-style-type: none;
 }
 
 .overflow-visible {
@@ -107,6 +130,54 @@ $main-blue: #444bf7;
     margin: 0;
 }
 
+.icon-null-guild-nav {
+  border-radius: 100%;
+  border: 1px solid #f0f0f0;
+  background-color: #151521;
+
+}
+
+.icon-guild-nav {
+  border-radius: 100%;
+
+}
+
+.bar-separator {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 2px;
+  background-color: #1e1e2e;
+}
+
+.h-180px {
+  height: 180px;
+}
+
+.item-serv:hover{
+  background-color: #1e1e2e;
+  border-radius: 8px;
+}
+
+.item-serv {
+  line-height: 1rem;
+}
+
+
+.icon-null-guild-nav p {
+  font-size: 13px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 .guilds-bg {
     
     padding-bottom: 0px;
@@ -175,6 +246,21 @@ $main-blue: #444bf7;
           animation: shine-loading-image 1.5s infinite ease-in;
 }
 
+.loading-img-mutual {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
+  border: 3px solid #1e1e2d;
+  background-color: #151521;
+
+background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+background-size: 300px;
+-webkit-animation: shine-loading-image 1.5s infinite ease-in;
+        animation: shine-loading-image 1.5s infinite ease-in;
+}
+
 .loading-btn {
     border-radius: 100%;
     background-color: #151521;
@@ -199,6 +285,19 @@ $main-blue: #444bf7;
   background-size: 300px;
   -webkit-animation: shine-loading-text 1.5s infinite ease-in;
           animation: shine-loading-text 1.5s infinite ease-in;
+}
+
+.loading-mutual-guild {
+  border-radius: 10px;
+  background-color: #151521;
+  width: 100%;
+  height: 45px;
+  background-image: -webkit-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: -o-linear-gradient(left, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-image: linear-gradient(90deg, #151521 0px, #1b1b29 40px, #151521 80px);
+  background-size: 300px;
+  -webkit-animation: shine-loading-mutual-guild 1.5s infinite ease-in;
+  animation: shine-loading-mutual-guild 1.5s infinite ease-in;
 }
 
 .loading-subtext {
@@ -279,6 +378,7 @@ $main-blue: #444bf7;
       background-position: 125px;
     }
   }
+
   
   
   @keyframes shine-loading-text {
@@ -289,3 +389,26 @@ $main-blue: #444bf7;
       background-position: 125px;
     }
   }
+
+  
+  @-webkit-keyframes shine-loading-mutual-guild {
+    0% {
+      background-position: -50px;
+    }
+    40%, 100% {
+      background-position: 233px;
+    }
+  }
+  
+  
+  
+  @keyframes shine-loading-mutual-guild {
+    0% {
+      background-position: -50px;
+    }
+    40%, 100% {
+      background-position: 233px;
+    }
+  }
+
+  

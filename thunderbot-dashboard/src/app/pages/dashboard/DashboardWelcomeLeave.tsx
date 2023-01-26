@@ -16,7 +16,7 @@ import {useNavigate} from 'react-router-dom'
 import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
 import {PartialGuild} from '../../utils/types'
 
-const DashboardPage = () => (
+const DashboardWelcomeLeavePage = () => (
   <>
     <div className='row gy-5 g-xl-10'>
       {/*begin::Col*/}
@@ -66,19 +66,19 @@ const DashboardPage = () => (
   </>
 )
 
-const DashboardWrapper = () => {
-  const {guild} = useContext(GuildContext)
+const DashboardWelcomeLeave = () => {
+  const {guild, updateGuild} = useContext(GuildContext)
 
-  return (
+  return guild ? (
     <m.div initial={{opacity: 0}} animate={{opacity: 1}}>
       <EnableSidebar>
-        <PageTitle description='You’ve got 24 New Sales' breadcrumbs={[]}>
-          Hello, Paul
-        </PageTitle>
-        <DashboardPage />
+        <PageTitle breadcrumbs={[]}>Welcomes & Leaves messages</PageTitle>
+        <DashboardWelcomeLeavePage />
       </EnableSidebar>
     </m.div>
+  ) : (
+    <></>
   )
 }
 
-export {DashboardWrapper}
+export {DashboardWelcomeLeave}

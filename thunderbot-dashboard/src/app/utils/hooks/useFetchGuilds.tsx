@@ -6,12 +6,10 @@ export function useFetchGuilds() {
   const [ownerGuilds, setOwnerGuild] = useState<PartialGuild[]>()
   const [mutualGuilds, setMutualGuild] = useState<PartialGuild[]>()
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState()
 
   useEffect(() => {
-    setLoading(true)
-
     getGuild()
       .then(({data}) => {
         setOwnerGuild(data.ownerUserGuilds)

@@ -15,34 +15,8 @@ import {useFetchGuilds} from '../../app/utils/hooks/useFetchGuilds'
 import {GuildContext} from '../../app/utils/contexts/GuildContext'
 
 const MasterLayout = () => {
-  const {ownerGuilds, mutualGuilds, error} = useFetchGuilds()
-  const [loading, setLoading] = useState(true)
-  const navigate = useNavigate()
+  const {ownerGuilds, mutualGuilds, loading} = useFetchGuilds()
   const {guild, updateGuild} = useContext(GuildContext)
-
-  useEffect(() => {
-    const checkGuilds = async () => {
-      if (mutualGuilds) {
-        const guildId = window.location.href.match(/\/dashboard\/([^\/]+)(?=\/|$)/)?.[1]
-        console.log(guildId?.toString())
-        mutualGuilds?.forEach((g) => {
-          if (g.id == guildId?.toString()) {
-            updateGuild(g)
-          }
-        })
-        setLoading(false)
-      }
-    }
-
-    checkGuilds()
-  }, [mutualGuilds])
-
-  useEffect(() => {
-    if (loading === false) {
-      console.log('useeffect')
-      if (!guild) navigate('/dashboard')
-    }
-  }, [loading])
 
   const location = useLocation()
   useEffect(() => {
@@ -57,11 +31,28 @@ const MasterLayout = () => {
     }, 500)
   }, [location.key])
 
+  useEffect(() => {
+    const checkGuilds = async () => {
+      if (!loading && !guild) {
+        const guildId = window.location.href.match(/\/dashboard\/([^\/]+)(?=\/|$)/)?.[1]
+        if (guildId?.toString()) {
+          mutualGuilds?.forEach((g) => {
+            if (g.id == guildId?.toString()) {
+              updateGuild(g)
+            }
+          })
+        }
+      }
+    }
+
+    checkGuilds()
+  }, [loading])
+
   return (
     <PageDataProvider>
       <div className='d-flex flex-column flex-root'>
         <div className='page d-flex flex-row flex-column-fluid'>
-          <AsideDefault />
+          <AsideDefault mutualGuilds={mutualGuilds} loading={loading} />
           <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper'>
             <HeaderWrapper />
 

@@ -11,6 +11,7 @@ import {LoadingOverlay} from '../components/LoaderComponents/LoadingOverlay'
 import {GuildsPage} from '../pages/home/GuildsPage'
 import {PartialGuild} from '../utils/types'
 import {DashboardSettings} from '../pages/dashboard/DashboardSettings'
+import {DashboardWelcomeLeave} from '../pages/dashboard/DashboardWelcomeLeave'
 
 const AppRoutes: FC = () => {
   const {user, loading, error} = useFetchUser()
@@ -18,7 +19,12 @@ const AppRoutes: FC = () => {
   const updateGuild = (guild: PartialGuild) => setGuild(guild)
 
   return (
-    <GuildContext.Provider value={{guild, updateGuild}}>
+    <GuildContext.Provider
+      value={{
+        guild,
+        updateGuild,
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route element={<App />}>
@@ -34,6 +40,7 @@ const AppRoutes: FC = () => {
                     <Route element={<MasterLayout />}>
                       <Route path='dashboard/:id' element={<DashboardWrapper />} />
                       <Route path='dashboard/:id/settings' element={<DashboardSettings />} />
+                      <Route path='dashboard/:id/welcome' element={<DashboardWelcomeLeave />} />
                     </Route>
                     <Route path='/' element={<LoginPage />} />
                   </>
