@@ -1,4 +1,6 @@
 import {motion as m} from 'framer-motion'
+import {UserContext} from '../../utils/contexts/UserContext'
+import {useContext} from 'react'
 
 export const LoginPage = () => {
   const redirect = () => {

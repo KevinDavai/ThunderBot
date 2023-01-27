@@ -9,12 +9,6 @@ import {
   MixedWidget15,
 } from '../../../_metronic/partials/widgets'
 import {motion as m} from 'framer-motion'
-import {GuildContext} from '../../utils/contexts/GuildContext'
-import {Navigate} from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
-
-import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
-import {PartialGuild} from '../../utils/types'
 
 const DashboardPage = () => (
   <>
@@ -67,14 +61,10 @@ const DashboardPage = () => (
 )
 
 const DashboardWrapper = () => {
-  const {guild} = useContext(GuildContext)
-
   return (
     <m.div initial={{opacity: 0}} animate={{opacity: 1}}>
       <EnableSidebar>
-        <PageTitle description='You’ve got 24 New Sales' breadcrumbs={[]}>
-          Hello, Paul
-        </PageTitle>
+        <PageTitle breadcrumbs={[]}>Vue d'ensemble</PageTitle>
         <DashboardPage />
       </EnableSidebar>
     </m.div>

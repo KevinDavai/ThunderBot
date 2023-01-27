@@ -68,18 +68,6 @@ const MasterLayout = () => {
           <Sidebar />
         </div>
       </div>
-
-      {/* begin:: Drawers */}
-      <ActivityDrawer />
-      <RightToolbar />
-      <DrawerMessenger />
-      {/* end:: Drawers */}
-
-      {/* begin:: Modals */}
-      <InviteUsers />
-      <UpgradePlan />
-      {/* end:: Modals */}
-      <ScrollTop />
     </PageDataProvider>
   )
 }
