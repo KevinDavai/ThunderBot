@@ -33,6 +33,7 @@ const MasterLayout = () => {
 
   useEffect(() => {
     const checkGuilds = async () => {
+      console.log('check guild')
       if (!loading && !guild) {
         const guildId = window.location.href.match(/\/dashboard\/([^\/]+)(?=\/|$)/)?.[1]
         console.log(guildId?.toString())

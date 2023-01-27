@@ -11,5 +11,7 @@ export const UserContext = createContext<UserContextType>({
   user: {
     id: '',
     discordId: '',
+    username: '',
+    discriminator: '',
   },
 })

@@ -1,6 +1,8 @@
 export type User = {
   id: string;
   discordId: string;
+  username: string;
+  discriminator: string;
 };
 
 export type PartialGuild = {

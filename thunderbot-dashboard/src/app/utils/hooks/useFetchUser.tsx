@@ -6,6 +6,8 @@ export function useFetchUser() {
   const [user, setUser] = useState<User>({
     id: '',
     discordId: '',
+    username: '',
+    discriminator: '',
   })
   const [error, setError] = useState()
   const [loading, setLoading] = useState(false)

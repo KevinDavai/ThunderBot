@@ -45,7 +45,7 @@ const AppRoutes: FC = () => {
                 </>
               ) : (
                 <>
-                  {user && !error ? (
+                  {user.id != '' && !error ? (
                     <>
                       <Route path='dashboard' element={<GuildsPage />}></Route>
                       <Route element={<MasterLayout />}>

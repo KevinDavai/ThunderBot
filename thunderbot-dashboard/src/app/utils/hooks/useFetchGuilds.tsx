@@ -10,6 +10,7 @@ export function useFetchGuilds() {
   const [error, setError] = useState()
 
   useEffect(() => {
+    console.log('salut')
     getGuild()
       .then(({data}) => {
         setOwnerGuild(data.ownerUserGuilds)
