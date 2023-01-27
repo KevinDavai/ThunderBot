@@ -31,6 +31,7 @@ export class UserService implements IUserService {
     doc.refreshToken = details.refreshToken;
     doc.username = details.username;
     doc.discriminator = details.discriminator;
+    doc.avatar = details.avatar;
 
     return doc.save()
   }

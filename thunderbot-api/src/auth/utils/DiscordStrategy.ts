@@ -25,7 +25,8 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
       discordId: profile.id,
       username: profile.username,
       discriminator: profile.discriminator,
-      accessToken, refreshToken 
+      accessToken, refreshToken,
+      avatar: profile.avatar
     });
   }
 }

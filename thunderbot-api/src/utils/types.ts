@@ -6,6 +6,7 @@ export type UserDetails = {
   refreshToken: string;
   username: string;
   discriminator: string;
+  avatar: string,
 };
 
 export type PartialGuild = {
