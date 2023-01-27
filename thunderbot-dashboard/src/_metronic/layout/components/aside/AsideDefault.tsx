@@ -46,14 +46,14 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
           {/* begin::Logo */}
 
           <div className='dropdown dropdown-z-index'>
-            <a
-              href='#'
-              role='button'
-              data-bs-toggle='dropdown'
-              aria-expanded='false'
-              className='text-white d-flex align-items-center w-100 min-h-30px justify-content-between'
-            >
-              {guild ? (
+            {guild ? (
+              <a
+                href='#'
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+                className='text-white d-flex align-items-center w-100 min-h-30px justify-content-between'
+              >
                 <div className='d-flex justify-content-center align-items-center gap-4 '>
                   {guild.icon ? (
                     <img className='icon-guild-nav w-45px h-45px' src={getIconURL(guild)}></img>
@@ -64,20 +64,31 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
                   )}
                   <p className='m-0 fs-4'>{guild?.name}</p>
                 </div>
-              ) : (
+                {loading ? (
+                  <span className='spinner-border spinner-border-sm ms-auto'></span>
+                ) : (
+                  <i className='fa-solid fa-chevron-down justify-self-end'></i>
+                )}
+              </a>
+            ) : (
+              <a
+                href='#'
+                role='button'
+                aria-expanded='false'
+                className='text-white d-flex align-items-center w-100 min-h-30px justify-content-between'
+              >
                 <div className='d-flex justify-content-center align-items-center gap-4 '>
                   <div className='loading-img-mutual'></div>
 
                   <p className='m-0 fs-4 loading-text'></p>
                 </div>
-              )}
-
-              {loading ? (
-                <span className='spinner-border spinner-border-sm ms-auto'></span>
-              ) : (
-                <i className='fa-solid fa-chevron-down justify-self-end'></i>
-              )}
-            </a>
+                {loading ? (
+                  <span className='spinner-border spinner-border-sm ms-auto'></span>
+                ) : (
+                  <i className='fa-solid fa-chevron-down justify-self-end'></i>
+                )}
+              </a>
+            )}
             {guild ? (
               <div className='dropdown-menu w-100 main-black-bg mt-3'>
                 <ul className='list-group px-5 overflow-auto mh-175px'>
@@ -85,11 +96,9 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
                     <div
                       role='button'
                       className='d-flex align-items-center justify-content-between item-serv'
+                      onClick={() => handleClick(guild)}
                     >
-                      <div
-                        onClick={() => handleClick(guild)}
-                        className='d-flex align-items-center gap-3 ps-3 py-3'
-                      >
+                      <div className='d-flex align-items-center gap-3 ps-3 py-3'>
                         {guild.icon ? (
                           <img
                             className='icon-guild-nav w-30px h-30px'
@@ -107,42 +116,38 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
                     </div>
                   </li>
                   {mutualGuilds && !loading ? (
-                    mutualGuilds.map((g) =>
-                      g.id != guild.id ? (
-                        <>
-                          <li key={g.id} className='my-2 '>
-                            <div
-                              role='button'
-                              className='d-flex align-items-center justify-content-between item-serv'
-                            >
-                              <div
-                                onClick={() => handleClick(g)}
-                                className='d-flex align-items-center gap-3 ps-3 py-3'
-                              >
-                                {g.icon ? (
-                                  <img
-                                    className='icon-guild-nav w-30px h-30px'
-                                    src={getIconURL(g)}
-                                  ></img>
-                                ) : (
-                                  <div className='icon-null-guild-nav w-30px h-30px'>
-                                    <p className='fs-9'>{getShortName(g)}</p>
-                                  </div>
-                                )}
-                                <p className='m-0 fs-7'>{g.name}</p>
-                              </div>
-                              {g.id === guild.id ? (
-                                <i className='fs-3 main-blue bi bi-check-lg pe-3'></i>
+                    mutualGuilds.map((g) => {
+                      return g.id != guild.id ? (
+                        <li className='my-2' key={g.id}>
+                          <div
+                            role='button'
+                            className='d-flex align-items-center justify-content-between item-serv'
+                            onClick={() => handleClick(g)}
+                          >
+                            <div className='d-flex align-items-center gap-3 ps-3 py-3'>
+                              {g.icon ? (
+                                <img
+                                  className='icon-guild-nav w-30px h-30px'
+                                  src={getIconURL(g)}
+                                ></img>
                               ) : (
-                                <></>
+                                <div className='icon-null-guild-nav w-30px h-30px'>
+                                  <p className='fs-9'>{getShortName(g)}</p>
+                                </div>
                               )}
+                              <p className='m-0 fs-7'>{g.name}</p>
                             </div>
-                          </li>
-                        </>
+                            {g.id === guild.id ? (
+                              <i className='fs-3 main-blue bi bi-check-lg pe-3'></i>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </li>
                       ) : (
-                        <></>
+                        <div key={'null'}></div>
                       )
-                    )
+                    })
                   ) : (
                     <></>
                   )}
@@ -160,7 +165,7 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
                         </div>
 
                         <p className='m-0 fs-7 ms-3' onClick={() => navigate('/dashboard')}>
-                          Ajouter un serveur
+                          Ajouters un serveur
                         </p>
                       </div>
                     </div>
