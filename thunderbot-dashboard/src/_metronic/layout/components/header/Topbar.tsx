@@ -1,7 +1,12 @@
+import {UserContext} from '../../../../app/utils/contexts/UserContext'
+import {getAvatarURL} from '../../../../app/utils/helpers'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import {Search, ThemeModeSwitcher, UserMenu} from '../../../partials'
+import {useContext} from 'react'
 
 const Topbar = () => {
+  const {user} = useContext(UserContext)
+
   return (
     <div className='d-flex align-items-center flex-shrink-0'>
       {/* Search */}
@@ -59,7 +64,7 @@ const Topbar = () => {
             data-kt-menu-overflow='false'
             data-kt-menu-placement='top-end'
           >
-            <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='avatar' />
+            <img src={getAvatarURL(user)} alt='avatar' />
             <UserMenu />
           </div>
         </div>

@@ -3,6 +3,7 @@ export type User = {
   discordId: string;
   username: string;
   discriminator: string;
+  avatar: string;
 };
 
 export type PartialGuild = {
