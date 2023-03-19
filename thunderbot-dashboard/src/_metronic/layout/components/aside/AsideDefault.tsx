@@ -72,7 +72,7 @@ const AsideDefault = ({mutualGuilds, loading}: Props) => {
               </a>
             ) : (
               <a
-                href='#'
+                href='javascript:void(0);'
                 role='button'
                 aria-expanded='false'
                 className='text-white d-flex align-items-center w-100 min-h-30px justify-content-between'
