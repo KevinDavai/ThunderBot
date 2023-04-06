@@ -11,7 +11,7 @@ export function useFetchUser() {
     avatar: '',
   })
   const [error, setError] = useState()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)

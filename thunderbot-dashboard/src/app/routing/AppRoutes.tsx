@@ -57,7 +57,7 @@ const AppRoutes: FC = () => {
                     </>
                   ) : (
                     <>
-                      <Route path='*' element={<LoginPage />} />
+                      <Route path='*' element={<Navigate to='/' />} />
                       <Route path='/' element={<LoginPage />} />
                     </>
                   )}

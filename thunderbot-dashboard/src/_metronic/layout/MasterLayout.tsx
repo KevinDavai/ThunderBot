@@ -3,21 +3,20 @@ import {Outlet, useNavigate} from 'react-router-dom'
 import {AsideDefault} from './components/aside/AsideDefault'
 import {Footer} from './components/Footer'
 import {HeaderWrapper} from './components/header/HeaderWrapper'
-import {RightToolbar} from '../partials/layout/RightToolbar'
-import {ScrollTop} from './components/ScrollTop'
+
 import {Content} from './components/Content'
 import {PageDataProvider} from './core'
 import {useLocation} from 'react-router-dom'
-import {DrawerMessenger, ActivityDrawer, InviteUsers, UpgradePlan} from '../partials'
 import {MenuComponent} from '../assets/ts/components'
 import {Sidebar} from './components/Sidebar'
 import {useFetchGuilds} from '../../app/utils/hooks/useFetchGuilds'
 import {GuildContext} from '../../app/utils/contexts/GuildContext'
 import {getGuildConfig} from '../../app/utils/api'
 import {GuildConfigType, PartialGuild} from '../../app/utils/types'
+import {LoadingOverlay} from '../../app/components/LoaderComponents/LoadingOverlay'
 
 const MasterLayout = () => {
-  const {ownerGuilds, mutualGuilds, loading} = useFetchGuilds()
+  const {mutualGuilds, loading} = useFetchGuilds()
   const {guild, updateGuild} = useContext(GuildContext)
   const [config, setConfig] = useState<GuildConfigType>()
   const [loadingConfig, setLoadingConfig] = useState(true)
@@ -49,7 +48,7 @@ const MasterLayout = () => {
       }
 
       mutualGuilds?.forEach((g) => {
-        if (g.id == guildId?.toString()) {
+        if (g.id === guildId?.toString()) {
           guildFinded = g
           bool = true
         }
@@ -59,7 +58,7 @@ const MasterLayout = () => {
     }
 
     const checkAll = async () => {
-      const guildId = window.location.href.match(/\/dashboard\/([^\/]+)(?=\/|$)/)?.[1].toString()
+      const guildId = window.location.href.match(/dashboard\/(\d+)/)?.[1].toString()
 
       if (guildId) {
         const {bool, guildFinded} = await isGuildExist(guildId)
@@ -82,7 +81,7 @@ const MasterLayout = () => {
           setConfig(data)
         })
         .catch((err) => console.log(err))
-        .finally(() => setLoadingConfig(false))
+        .finally(() => setTimeout(() => setLoadingConfig(false), 1500))
     }
   }, [guild])
 
@@ -97,7 +96,7 @@ const MasterLayout = () => {
             <div id='kt_content' className='content d-flex flex-column flex-column-fluid'>
               {loadingConfig ? (
                 <>
-                  <span className='spinner-border spinner-border-xl ms-auto me-auto mt-auto mb-auto '></span>
+                  <LoadingOverlay className='mb-20'></LoadingOverlay>
                 </>
               ) : (
                 <>

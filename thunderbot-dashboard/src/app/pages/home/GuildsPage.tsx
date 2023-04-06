@@ -45,7 +45,7 @@ export const GuildsPage = () => {
                         <GuildMenuItem ownerGuild={guild} isMutual={true} />
                       </div>
                     ) : (
-                      <div onClick={() => handleClick(guild)}>
+                      <div>
                         <GuildMenuItem ownerGuild={guild} isMutual={false} />
                       </div>
                     )}

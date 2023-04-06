@@ -82,7 +82,12 @@ c17.9,0,32.5-14.5,32.5-32.5V106H204z'
             {isMutual ? (
               <a className='btn btn-primary me-6 align-self-start'>Ouvrir</a>
             ) : (
-              <a className='btn btn-light-info me-6 align-self-start'>Configurer</a>
+              <a
+                className='btn btn-light-info me-6 align-self-start'
+                href={process.env.REACT_APP_DISCORD_INVITE + '&guild_id=' + ownerGuild.id}
+              >
+                Configurer
+              </a>
             )}
           </div>
         </div>
