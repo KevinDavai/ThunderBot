@@ -1,5 +1,5 @@
 import {useEffect, useContext, useState} from 'react'
-import {Outlet, useNavigate} from 'react-router-dom'
+import {Outlet, useNavigate, useParams} from 'react-router-dom'
 import {AsideDefault} from './components/aside/AsideDefault'
 import {Footer} from './components/Footer'
 import {HeaderWrapper} from './components/header/HeaderWrapper'
@@ -16,10 +16,10 @@ import {GuildConfigType, PartialGuild} from '../../app/utils/types'
 import {LoadingOverlay} from '../../app/components/LoaderComponents/LoadingOverlay'
 
 const MasterLayout = () => {
+  const {id} = useParams()
   const {mutualGuilds, loading} = useFetchGuilds()
-  const {guild, updateGuild} = useContext(GuildContext)
-  const [config, setConfig] = useState<GuildConfigType>()
-  const [loadingConfig, setLoadingConfig] = useState(true)
+  const {guild, updateGuild, updateGuildConfig, loadingConfig, updateLoadingConfig} =
+    useContext(GuildContext)
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -58,10 +58,9 @@ const MasterLayout = () => {
     }
 
     const checkAll = async () => {
-      const guildId = window.location.href.match(/dashboard\/(\d+)/)?.[1].toString()
-
-      if (guildId) {
-        const {bool, guildFinded} = await isGuildExist(guildId)
+      console.log(id)
+      if (id) {
+        const {bool, guildFinded} = await isGuildExist(id)
         if (!bool) navigate('/dashboard') // TODO: Add error redirect for popup
         updateGuild(guildFinded)
       }
@@ -75,13 +74,13 @@ const MasterLayout = () => {
   useEffect(() => {
     console.log('useEffectGuild')
     if (guild) {
-      setLoadingConfig(true)
+      updateLoadingConfig(true)
       getGuildConfig(guild.id)
         .then(({data}) => {
-          setConfig(data)
+          updateGuildConfig(data)
         })
         .catch((err) => console.log(err))
-        .finally(() => setTimeout(() => setLoadingConfig(false), 1500))
+        .finally(() => setTimeout(() => updateLoadingConfig(false), 1000))
     }
   }, [guild])
 

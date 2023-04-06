@@ -1,26 +1,31 @@
 import {useContext, useEffect, useState} from 'react'
 import {EnableSidebar, PageTitle} from '../../../_metronic/layout/core'
-import {
-  ListsWidget4,
-  ListsWidget5,
-  TablesWidget9,
-  MixedWidget13,
-  MixedWidget14,
-  MixedWidget15,
-} from '../../../_metronic/partials/widgets'
+
 import {motion as m} from 'framer-motion'
 import {GuildContext} from '../../utils/contexts/GuildContext'
-import {Navigate} from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
-
-import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
-import {PartialGuild} from '../../utils/types'
 
 const DashboardWelcomeLeavePage = () => {
-  const [welcomeMsg, setWelcomeMsg] = useState(true)
+  const {guildConfig} = useContext(GuildContext)
+  const [welcomeMsg, setWelcomeMsg] = useState(false)
   const [leaveMsg, setLeaveMsg] = useState(false)
   const [dmWelcomeMsg, setDmWelcomeMsg] = useState(false)
-  const [dmLeaveMsg, setDmLeaveMsg] = useState(false)
+  const [imageJoinMsg, setImageJoinMsg] = useState(false)
+
+  useEffect(() => {
+    const initConfig = async () => {
+      if (guildConfig?.modulesStates?.welcomeMsg)
+        setWelcomeMsg(guildConfig.modulesStates.welcomeMsg)
+      if (guildConfig?.modulesStates?.leaveMsg) setWelcomeMsg(guildConfig.modulesStates.leaveMsg)
+      if (guildConfig?.modulesStates?.dmWelcomeMsg)
+        setWelcomeMsg(guildConfig.modulesStates.dmWelcomeMsg)
+      if (guildConfig?.modulesStates?.imageJoinMsg)
+        setWelcomeMsg(guildConfig.modulesStates.imageJoinMsg)
+    }
+
+    if (!guildConfig) return
+    console.log('INIT CONFIG WELCOME PAGE')
+    initConfig()
+  }, [guildConfig])
 
   return (
     <>
@@ -109,8 +114,8 @@ const DashboardWelcomeLeavePage = () => {
                   type='checkbox'
                   value=''
                   id='flexSwitchChecked'
-                  checked={dmLeaveMsg}
-                  onClick={() => setDmLeaveMsg(!dmLeaveMsg)}
+                  checked={imageJoinMsg}
+                  onClick={() => setImageJoinMsg(!imageJoinMsg)}
                 />
               </div>
             </div>
@@ -124,7 +129,7 @@ const DashboardWelcomeLeavePage = () => {
 }
 
 const DashboardWelcomeLeave = () => {
-  const {guild, updateGuild} = useContext(GuildContext)
+  const {guild} = useContext(GuildContext)
 
   return guild ? (
     <m.div initial={{opacity: 0}} animate={{opacity: 1}}>

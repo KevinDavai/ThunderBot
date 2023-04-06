@@ -22,4 +22,11 @@ export type GuildResponse = {
 
 export type GuildConfigType = {
   guildId: string
+  modulesStates?: {
+    welcomeMsg?: boolean
+    leaveMsg?: boolean
+    dmWelcomeMsg?: boolean
+    imageJoinMsg?: boolean
+  }
 }
+
