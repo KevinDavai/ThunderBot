@@ -1,10 +1,12 @@
 import {
+  Body,
   Controller,
   Get,
   HttpException,
   HttpStatus,
   Inject,
   Param,
+  Post,
 } from '@nestjs/common';
 import { NotFoundError } from 'rxjs';
 import { ROUTES, SERVICES } from 'src/utils/constants';
@@ -15,6 +17,7 @@ export class GuildsController {
   constructor(
     @Inject(SERVICES.GUILDS) private readonly guildsService: IGuildsService,
   ) {}
+
   @Get('config/:guildId')
   async getGuildConfig(@Param('guildId') guildId: string) {
     const guildConfig = await this.guildsService.getGuildConfig(guildId);
@@ -27,5 +30,10 @@ export class GuildsController {
     }
 
     return guildConfig;
+  }
+
+  @Post(':guildId/config/welcome')
+  async updatePluginWelcome(@Param('guildId') guildId: string, @Body('welcomeConfig') welcomeConfig: object) {
+    console.log(guildId, welcomeConfig)
   }
 }

@@ -6,27 +6,63 @@ import {GuildContext} from '../../utils/contexts/GuildContext'
 
 const DashboardWelcomeLeavePage = () => {
   const {guildConfig} = useContext(GuildContext)
-  const [welcomeMsg, setWelcomeMsg] = useState(false)
-  const [leaveMsg, setLeaveMsg] = useState(false)
-  const [dmWelcomeMsg, setDmWelcomeMsg] = useState(false)
-  const [imageJoinMsg, setImageJoinMsg] = useState(false)
 
-  useEffect(() => {
-    const initConfig = async () => {
-      if (guildConfig?.modulesStates?.welcomeMsg)
-        setWelcomeMsg(guildConfig.modulesStates.welcomeMsg)
-      if (guildConfig?.modulesStates?.leaveMsg) setWelcomeMsg(guildConfig.modulesStates.leaveMsg)
-      if (guildConfig?.modulesStates?.dmWelcomeMsg)
-        setWelcomeMsg(guildConfig.modulesStates.dmWelcomeMsg)
-      if (guildConfig?.modulesStates?.imageJoinMsg)
-        setWelcomeMsg(guildConfig.modulesStates.imageJoinMsg)
-    }
+  const initialConfig = {
+    welcomeMsg: {
+      statut: false,
+    },
+    leaveMsg: {
+      statut: false,
+    },
+    dmWelcomeMsg: {
+      statut: false,
+    },
+    welcomeImage: {
+      statut: false,
+    },
+  }
 
-    if (!guildConfig) return
-    console.log('INIT CONFIG WELCOME PAGE')
-    initConfig()
-  }, [guildConfig])
+  const [welcomeConfig, setWelcomeConfig] = useState(
+    guildConfig!.plugins?.welcomePlugin || initialConfig
+  )
 
+  const updateWelcomeMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      welcomeMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  const updateLeaveMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      leaveMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  const updateDmWelcomeMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      dmWelcomeMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  const updatewelcomeImageStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      welcomeImage: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  console.log(welcomeConfig)
   return (
     <>
       {/*begin::Card*/}
@@ -40,14 +76,13 @@ const DashboardWelcomeLeavePage = () => {
                 <input
                   className='form-check-input w-50px'
                   type='checkbox'
-                  value=''
                   id='flexSwitchChecked'
-                  checked={welcomeMsg}
-                  onClick={() => setWelcomeMsg(!welcomeMsg)}
+                  checked={welcomeConfig?.welcomeMsg?.statut}
+                  onChange={updateWelcomeMsgStatut}
                 />
               </div>
             </div>
-            {welcomeMsg ? <div className='separator my-8'></div> : <></>}
+            {welcomeConfig?.welcomeMsg?.statut ? <div className='separator my-8'></div> : <></>}
           </div>
         </div>
         {/*end::Col*/}
@@ -64,10 +99,9 @@ const DashboardWelcomeLeavePage = () => {
                 <input
                   className='form-check-input w-50px'
                   type='checkbox'
-                  value=''
                   id='flexSwitchChecked'
-                  checked={leaveMsg}
-                  onClick={() => setLeaveMsg(!leaveMsg)}
+                  checked={welcomeConfig?.leaveMsg?.statut}
+                  onChange={updateLeaveMsgStatut}
                 />
               </div>
             </div>
@@ -91,8 +125,8 @@ const DashboardWelcomeLeavePage = () => {
                   type='checkbox'
                   value=''
                   id='flexSwitchChecked'
-                  checked={dmWelcomeMsg}
-                  onClick={() => setDmWelcomeMsg(!dmWelcomeMsg)}
+                  checked={welcomeConfig?.dmWelcomeMsg?.statut}
+                  onChange={updateDmWelcomeMsgStatut}
                 />
               </div>
             </div>
@@ -114,8 +148,8 @@ const DashboardWelcomeLeavePage = () => {
                   type='checkbox'
                   value=''
                   id='flexSwitchChecked'
-                  checked={imageJoinMsg}
-                  onClick={() => setImageJoinMsg(!imageJoinMsg)}
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
                 />
               </div>
             </div>
