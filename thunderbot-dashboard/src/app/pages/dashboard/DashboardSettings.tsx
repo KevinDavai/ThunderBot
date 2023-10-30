@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react'
+import {useContext} from 'react'
 import {EnableSidebar, PageTitle} from '../../../_metronic/layout/core'
 import {
   ListsWidget4,
@@ -10,11 +10,6 @@ import {
 } from '../../../_metronic/partials/widgets'
 import {motion as m} from 'framer-motion'
 import {GuildContext} from '../../utils/contexts/GuildContext'
-import {Navigate} from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
-
-import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
-import {PartialGuild} from '../../utils/types'
 
 const DashboardSettingsPage = () => (
   <>
@@ -67,7 +62,7 @@ const DashboardSettingsPage = () => (
 )
 
 const DashboardSettings = () => {
-  const {guild, updateGuild} = useContext(GuildContext)
+  const {guild} = useContext(GuildContext)
 
   return guild ? (
     <m.div initial={{opacity: 0}} animate={{opacity: 1}}>

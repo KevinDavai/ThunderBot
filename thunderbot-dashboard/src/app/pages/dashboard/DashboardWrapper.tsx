@@ -1,4 +1,3 @@
-import {useContext, useEffect, useState} from 'react'
 import {EnableSidebar, PageTitle} from '../../../_metronic/layout/core'
 import {
   ListsWidget4,

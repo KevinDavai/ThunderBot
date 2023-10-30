@@ -1,6 +1,5 @@
-import {motion as m} from 'framer-motion'
 import {GuildContext} from '../../utils/contexts/GuildContext'
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useFetchGuilds} from '../../utils/hooks/useFetchGuilds'
 import {GuildMenuItem} from '../../components/GuildMenuItem/GuildMenuItem'
@@ -9,7 +8,7 @@ import {PartialGuild} from '../../utils/types'
 
 export const GuildsPage = () => {
   const navigate = useNavigate()
-  const {guild, updateGuild} = useContext(GuildContext)
+  const {updateGuild} = useContext(GuildContext)
   const {ownerGuilds, mutualGuilds, loading} = useFetchGuilds()
 
   const handleClick = (guild: PartialGuild) => {
