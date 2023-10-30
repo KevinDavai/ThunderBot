@@ -22,4 +22,21 @@ export type GuildResponse = {
 
 export type GuildConfigType = {
   guildId: string
+  plugins?: {
+    welcomePlugin?: {
+      welcomeMsg?: {
+        statut?: boolean
+      }
+      leaveMsg?: {
+        statut?: boolean
+      }
+      dmWelcomeMsg?: {
+        statut?: boolean
+      }
+      welcomeImage?: {
+        statut?: boolean
+      }
+    }
+  }
 }
+

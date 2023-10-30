@@ -1,65 +1,166 @@
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import {EnableSidebar, PageTitle} from '../../../_metronic/layout/core'
-import {
-  ListsWidget4,
-  ListsWidget5,
-  TablesWidget9,
-  MixedWidget13,
-  MixedWidget14,
-  MixedWidget15,
-} from '../../../_metronic/partials/widgets'
+
 import {motion as m} from 'framer-motion'
 import {GuildContext} from '../../utils/contexts/GuildContext'
 
-const DashboardWelcomeLeavePage = () => (
-  <>
-    <div className='row gy-5 g-xl-10'>
-      {/*begin::Col*/}
-      <div className='col-xl-4'>
-        <MixedWidget13
-          className='card-xl-stretch mb-xl-10'
-          backGroundColor='#F7D9E3'
-          chartHeight='100px'
-        />
-      </div>
-      {/*end::Col*/}
+const DashboardWelcomeLeavePage = () => {
+  const {guildConfig} = useContext(GuildContext)
 
-      {/*begin::Col*/}
-      <div className='col-xl-4'>
-        <MixedWidget14
-          className='card-xl-stretch mb-xl-10'
-          backGroundColor='#CBF0F4'
-          chartHeight='100px'
-        />
-      </div>
-      {/*end::Col*/}
+  const initialConfig = {
+    welcomeMsg: {
+      statut: false,
+    },
+    leaveMsg: {
+      statut: false,
+    },
+    dmWelcomeMsg: {
+      statut: false,
+    },
+    welcomeImage: {
+      statut: false,
+    },
+  }
 
-      {/*begin::Col*/}
-      <div className='col-xl-4'>
-        <MixedWidget15 className='card-xl-stretch mb-xl-10' backGroundColor='#CBD4F4' />
-      </div>
-      {/*end::Col*/}
-    </div>
-    {/*end::Row*/}
+  const [welcomeConfig, setWelcomeConfig] = useState(
+    guildConfig!.plugins?.welcomePlugin || initialConfig
+  )
 
-    <TablesWidget9 className='mb-5 mb-xl-10' />
+  const updateWelcomeMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      welcomeMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
 
-    {/*begin::Row*/}
-    <div className='row gy-5 g-xl-10'>
-      {/*begin::Col*/}
-      <div className='col-xxl-6'>
-        <ListsWidget5 className='card-xl-stretch mb-xl-10' />
-      </div>
-      {/*end::Col*/}
+  const updateLeaveMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      leaveMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
 
-      {/*begin::Col*/}
-      <div className='col-xxl-6'>
-        <ListsWidget4 className='card-xl-stretch mb-5 mb-xl-10' items={5} />
+  const updateDmWelcomeMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      dmWelcomeMsg: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  const updatewelcomeImageStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWelcomeConfig({
+      ...welcomeConfig,
+      welcomeImage: {
+        statut: e.target.checked,
+      },
+    })
+  }
+
+  console.log(welcomeConfig)
+  return (
+    <>
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer un message lorsqu’un membre rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeMsg?.statut}
+                  onChange={updateWelcomeMsgStatut}
+                />
+              </div>
+            </div>
+            {welcomeConfig?.welcomeMsg?.statut ? <div className='separator my-8'></div> : <></>}
+          </div>
+        </div>
+        {/*end::Col*/}
       </div>
-      {/*end::Col*/}
-    </div>
-  </>
-)
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer un message lorsqu’un membre quitte le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.leaveMsg?.statut}
+                  onChange={updateLeaveMsgStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>
+                Envoyer un message privé lorsqu'un utilisateur rejoint le serveur
+              </p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.dmWelcomeMsg?.statut}
+                  onChange={updateDmWelcomeMsgStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+    </>
+  )
+}
 
 const DashboardWelcomeLeave = () => {
   const {guild} = useContext(GuildContext)

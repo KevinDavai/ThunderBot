@@ -6,10 +6,9 @@ import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import {LoginPage} from '../pages/home/LoginPage'
 import {GuildContext} from '../utils/contexts/GuildContext'
 import {useFetchUser} from '../utils/hooks/useFetchUser'
-import {setTimeout} from 'timers'
 import {LoadingOverlay} from '../components/LoaderComponents/LoadingOverlay'
 import {GuildsPage} from '../pages/home/GuildsPage'
-import {PartialGuild, User} from '../utils/types'
+import {GuildConfigType, PartialGuild, User} from '../utils/types'
 import {DashboardSettings} from '../pages/dashboard/DashboardSettings'
 import {DashboardWelcomeLeave} from '../pages/dashboard/DashboardWelcomeLeave'
 import {UserContext} from '../utils/contexts/UserContext'
@@ -17,7 +16,11 @@ import {UserContext} from '../utils/contexts/UserContext'
 const AppRoutes: FC = () => {
   const {user, loading, error} = useFetchUser()
   const [guild, setGuild] = useState<PartialGuild>()
+  const [guildConfig, setGuildConfig] = useState<GuildConfigType>()
+  const [loadingConfig, setLoadingConfig] = useState(true)
   const updateGuild = (guild: PartialGuild) => setGuild(guild)
+  const updateGuildConfig = (data: GuildConfigType) => setGuildConfig(data)
+  const updateLoadingConfig = (bool: boolean) => setLoadingConfig(bool)
 
   const [userState, setUserState] = useState<User>()
   const updateUser = (user: User) => setUserState(user)
@@ -34,6 +37,10 @@ const AppRoutes: FC = () => {
         value={{
           guild,
           updateGuild,
+          guildConfig,
+          updateGuildConfig,
+          loadingConfig,
+          updateLoadingConfig,
         }}
       >
         <BrowserRouter>
@@ -45,7 +52,7 @@ const AppRoutes: FC = () => {
                 </>
               ) : (
                 <>
-                  {user.id != '' && !error ? (
+                  {user.id !== '' && !error ? (
                     <>
                       <Route path='dashboard' element={<GuildsPage />}></Route>
                       <Route element={<MasterLayout />}>
