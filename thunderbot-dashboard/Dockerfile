@@ -6,7 +6,7 @@ COPY rtl.config.js ./
 
 
 FROM base AS dev
-RUN npm install --legacy-peer-deps
+RUN npm install
 COPY . .
 CMD [ "npm", "start" ]
 

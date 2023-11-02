@@ -12,6 +12,7 @@ import {GuildConfigType, PartialGuild, User} from '../utils/types'
 import {DashboardSettings} from '../pages/dashboard/DashboardSettings'
 import {DashboardWelcomeLeave} from '../pages/dashboard/DashboardWelcomeLeave'
 import {UserContext} from '../utils/contexts/UserContext'
+import {isEqual} from 'lodash'
 
 const AppRoutes: FC = () => {
   const {user, loading, error} = useFetchUser()
@@ -21,6 +22,17 @@ const AppRoutes: FC = () => {
   const updateGuild = (guild: PartialGuild) => setGuild(guild)
   const updateGuildConfig = (data: GuildConfigType) => setGuildConfig(data)
   const updateLoadingConfig = (bool: boolean) => setLoadingConfig(bool)
+
+  const [isChanged, setIsChanged] = useState(false)
+  const [editedData, setEditedData] = useState({})
+  const [apiUrl, setApiUrl] = useState('')
+  const updateIsChanged = (oldObj: object, newOjb: object) => {
+    if (isEqual(oldObj, newOjb)) {
+      setIsChanged(false)
+    } else setIsChanged(true)
+  }
+  const updateData = (data: object) => setEditedData(data)
+  const updateApi = (url: string) => setApiUrl(url)
 
   const [userState, setUserState] = useState<User>()
   const updateUser = (user: User) => setUserState(user)

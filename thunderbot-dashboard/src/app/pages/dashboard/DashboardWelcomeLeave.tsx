@@ -1,11 +1,16 @@
-import {useContext, useState} from 'react'
+import {useContext, useEffect, useRef, useState} from 'react'
 import {EnableSidebar, PageTitle} from '../../../_metronic/layout/core'
 
 import {motion as m} from 'framer-motion'
 import {GuildContext} from '../../utils/contexts/GuildContext'
+import {SaveChanges} from '../../components/SaveChanges'
+import {useOutletContext} from 'react-router-dom'
+import {json} from 'stream/consumers'
 
 const DashboardWelcomeLeavePage = () => {
   const {guildConfig} = useContext(GuildContext)
+
+  const {setOldData, setNewData} = useOutletContext() as any // <-- access context value
 
   const initialConfig = {
     welcomeMsg: {
@@ -25,6 +30,15 @@ const DashboardWelcomeLeavePage = () => {
   const [welcomeConfig, setWelcomeConfig] = useState(
     guildConfig!.plugins?.welcomePlugin || initialConfig
   )
+
+  useEffect(() => {
+    console.log('setOldData')
+    setOldData(welcomeConfig)
+  }, [])
+
+  useEffect(() => {
+    setNewData(welcomeConfig)
+  }, [welcomeConfig])
 
   const updateWelcomeMsgStatut = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWelcomeConfig({
@@ -62,7 +76,6 @@ const DashboardWelcomeLeavePage = () => {
     })
   }
 
-  console.log(welcomeConfig)
   return (
     <>
       {/*begin::Card*/}
@@ -127,6 +140,190 @@ const DashboardWelcomeLeavePage = () => {
                   id='flexSwitchChecked'
                   checked={welcomeConfig?.dmWelcomeMsg?.statut}
                   onChange={updateDmWelcomeMsgStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*end::Col*/}
+      </div>
+      {/*end::Card*/}
+      {/*begin::Card*/}
+      <div className='card my-8'>
+        {/*begin::Col*/}
+        <div className='card-body p-lg-8'>
+          <div className='text-inverse-primary fs-3'>
+            <div className='d-flex justify-content-between'>
+              <p className='p-0 m-0'>Envoyer une image lorsqu'un utilisateur rejoint le serveur</p>
+              <div className='form-check form-switch form-check-custom form-check-solid '>
+                <input
+                  className='form-check-input w-50px'
+                  type='checkbox'
+                  value=''
+                  id='flexSwitchChecked'
+                  checked={welcomeConfig?.welcomeImage?.statut}
+                  onChange={updatewelcomeImageStatut}
                 />
               </div>
             </div>

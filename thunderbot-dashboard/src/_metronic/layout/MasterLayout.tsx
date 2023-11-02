@@ -14,6 +14,8 @@ import {GuildContext} from '../../app/utils/contexts/GuildContext'
 import {getGuildConfig} from '../../app/utils/api'
 import {GuildConfigType, PartialGuild} from '../../app/utils/types'
 import {LoadingOverlay} from '../../app/components/LoaderComponents/LoadingOverlay'
+import {SaveChanges} from '../../app/components/SaveChanges'
+import {isEqual} from 'lodash'
 
 const MasterLayout = () => {
   const {id} = useParams()
@@ -30,6 +32,7 @@ const MasterLayout = () => {
   }, [])
 
   useEffect(() => {
+    resetData()
     setTimeout(() => {
       MenuComponent.reinitialization()
     }, 500)
@@ -84,6 +87,25 @@ const MasterLayout = () => {
     }
   }, [guild])
 
+  // Store initial data of the child component
+  const [oldData, setOldData] = useState({})
+  // Store modified (new) data of the child component
+  const [newData, setNewData] = useState({})
+
+  useEffect(() => {
+    console.log('RERENDER')
+  }, [])
+
+  useEffect(() => {
+    console.log('LOG2: ' + JSON.stringify(oldData, null, 4))
+  }, [oldData])
+
+  // Reset oldData with the newData when it's saved
+  const resetData = () => {
+    setOldData({})
+    setNewData({})
+  }
+
   return (
     <PageDataProvider>
       <div className='d-flex flex-column flex-root'>
@@ -100,8 +122,14 @@ const MasterLayout = () => {
               ) : (
                 <>
                   <Content>
-                    <Outlet />
+                    <Outlet context={{setOldData, setNewData}} />
                   </Content>
+
+                  <SaveChanges
+                    oldData={oldData}
+                    newData={newData}
+                    resetData={resetData}
+                  ></SaveChanges>
                 </>
               )}
             </div>
