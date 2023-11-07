@@ -4,10 +4,10 @@ import {useContext, useEffect, useRef, useState} from 'react'
 type Props = {
   oldData: object
   newData: object
-  resetData: () => void
+  saveData: () => void
 }
 
-export const SaveChanges = ({oldData, newData, resetData}: Props) => {
+export const SaveChanges = ({oldData, newData, saveData}: Props) => {
   // Store if data was changed and is not the same with older data
   const [isChanged, setIsChanged] = useState(false)
 
@@ -27,7 +27,8 @@ export const SaveChanges = ({oldData, newData, resetData}: Props) => {
   }, [newData, oldData])
 
   const handleSaveClick = () => {
-    resetData()
+    console.log('RESET')
+    saveData()
   }
 
   return (

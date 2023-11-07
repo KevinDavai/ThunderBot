@@ -12,9 +12,10 @@ import {Sidebar} from './components/Sidebar'
 import {useFetchGuilds} from '../../app/utils/hooks/useFetchGuilds'
 import {GuildContext} from '../../app/utils/contexts/GuildContext'
 import {getGuildConfig} from '../../app/utils/api'
-import {GuildConfigType, PartialGuild} from '../../app/utils/types'
+import {PartialGuild} from '../../app/utils/types'
 import {LoadingOverlay} from '../../app/components/LoaderComponents/LoadingOverlay'
 import {SaveChanges} from '../../app/components/SaveChanges'
+import {json} from 'stream/consumers'
 import {isEqual} from 'lodash'
 
 const MasterLayout = () => {
@@ -93,17 +94,22 @@ const MasterLayout = () => {
   const [newData, setNewData] = useState({})
 
   useEffect(() => {
-    console.log('RERENDER')
-  }, [])
-
-  useEffect(() => {
-    console.log('LOG2: ' + JSON.stringify(oldData, null, 4))
-  }, [oldData])
-
+    console.log(JSON.stringify(oldData, null, 4))
+    console.log(JSON.stringify(newData, null, 4))
+  }, [oldData, newData])
   // Reset oldData with the newData when it's saved
   const resetData = () => {
-    setOldData({})
-    setNewData({})
+    if (!isEqual(oldData, newData)) {
+      console.log('run only out')
+      setNewData({})
+      setOldData({})
+    }
+  }
+
+  const saveData = () => {
+    setOldData(newData)
+    console.log(JSON.stringify(oldData, null, 4))
+    console.log(JSON.stringify(newData, null, 4))
   }
 
   return (
@@ -122,13 +128,18 @@ const MasterLayout = () => {
               ) : (
                 <>
                   <Content>
-                    <Outlet context={{setOldData, setNewData}} />
+                    <Outlet
+                      context={{
+                        setOldData,
+                        setNewData,
+                      }}
+                    />
                   </Content>
 
                   <SaveChanges
                     oldData={oldData}
                     newData={newData}
-                    resetData={resetData}
+                    saveData={saveData}
                   ></SaveChanges>
                 </>
               )}
